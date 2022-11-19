@@ -112,6 +112,7 @@
                         } ;
                   in
                     {
+		      test = builtins.throw "BB FFY" ;
 		      output = if eval.output-test-results.success then eval.output.value else eval.throw ;
                       trace =
 		        if eval.trace.success then builtins.trace eval.trace.value eval.output.value
