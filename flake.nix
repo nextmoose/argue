@@ -51,7 +51,7 @@
 			    else if builtins.getAttr "success" ( builtins.tryEval ( builtins.elemAt test 0 input output.value ) ) then { success = false ; value = [ "96fc5f0b-86ec-49d5-be4a-2de825abbc37" ] ; }
 			    else if builtins.typeOf ( builtins.elemAt test 0 input output.value ) != "bool" then { success = false ; value = [ "262789d3-7d59-47e0-90cd-8b0b349a6268" ] ; }
 			    else if builtins.elemAt test 0 input output.value != builtins.elemAt test 1 then { success = false ; value = [ ( builtins.elemAt test 1 ) ] ; }
-			    else { success = true ; value = output.value ; } ;
+			    else builtins.trace "YES" { success = true ; value = output.value ; } ;
 			in test output-tests mapper "05e2eedd-cb28-4d01-b602-9d3d7665c0c6" ;
 		  string =
 		    if output-test-results.success == false then output-test-results
