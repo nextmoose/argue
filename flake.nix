@@ -36,8 +36,7 @@
 				  if ! success then [ builtins.elemAt test 3 ]
 				  else if ! eval.success then [ builtins.elemAt test 3 ]
 				  else [ ] ;
-				k = builtins.toString ( builtins.length value ) ;
-				in builtins.trace k { success = success ; value = value ; } ;
+				in { success = success ; value = value ; } ;
 			in test input-tests mapper "2993696e-6e89-41b8-a61a-98ce44b944c4" ;
 		  output =
 		    if ! input-test-results.success then input-test-results
@@ -71,14 +70,13 @@
 		      else
 		        let
 			  mapped = builtins.map mapper results ;
-			  success = builtins.all ( test : test.success ) mapped ;
 			  value = builtins.concatLists ( builtins.map ( test : test.value ) mapped ) ;
 			  in { success = success ; value = value ; } ;
 		  ticket = if builtins.typeOf label == "string" then label else "648c4ec2-8287-455e-8bc1-4b2de45b0b4e" ;
 		  in
 		    {
 		      object = if output-test-results.success then output.value else builtins.throw ( concat-strings output-test-results.value ) ;
-		      test = if builtins.toString ( builtins.length input-test-results.value ) == "0" then "PASSED" else builtins.toString ( builtins.length input-test-results.value ) ;
+		      test = if input-test-results.success then "PASSED" else "FAILED" ;
 		      trace =
 		        if string.success then builtins.trace string.value output.value
 			else if output-test-results.success then builtins.trace string.value output.value
