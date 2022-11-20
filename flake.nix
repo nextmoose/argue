@@ -50,6 +50,7 @@
 			    else if builtins.typeOf ( builtins.elemAt test 0 ) != "lambda" then { success = false ; value = [ "ac4c3793-77b8-4126-8c89-66e74795fcbc" ] ; }
 			    else if builtins.trace "NO3 - ${ builtins.typeOf ( builtins.tryEval ( builtins.elemAt test 0 input ) ) }" false then builtins.throw ""
 			    else if builtins.trace "NO3 - ${ builtins.concatStringsSep "," ( builtins.attrNames ( builtins.tryEval ( builtins.elemAt test 0 input ) ) ) }" false then builtins.throw ""
+			    else if builtins.trace "NO3 - ${ builtins.concatStringsSep "," ( builtins.attrValues ( builtins.mapAttrs ( name : value : builtins.typeOf value ) ( builtins.tryEval ( builtins.elemAt test 0 input ) ) ) ) }" false then builtins.throw ""
 			    else if builtins.getAttr "success" ( builtins.tryEval ( builtins.elemAt test 0 input ) ) then { success = false ; value = [ "48f02c2d-c821-4e26-bbb6-d5fe81527445" ] ; }
 			    else if builtins.trace "NO4" false then builtins.throw ""
 			    else if builtins.typeOf ( builtins.getAttr "value" ( builtins.tryEval ( builtins.elemAt test 0 input ) ) ) != "lambda" then { success = false ; value = [ "b4b634be-0345-4050-8f95-acbfede1af82" ] ; }
