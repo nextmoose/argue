@@ -75,7 +75,7 @@
 			  mapped = builtins.map mapper results ;
 			  success = builtins.all ( test : test.success ) mapped ;
 			  value = builtins.concatLists ( builtins.map ( test : test.value ) mapped ) ;
-			  in builtins.trace ( "Y ${ builtins.typeOf ( builtins.elemAt mapped 0 ) == "bool" }" ) { success = success ; value = value ; } ;
+			  in builtins.trace ( "Y ${ builtins.typeOf ( builtins.elemAt mapped 0 ) }" ) { success = success ; value = value ; } ;
 		  ticket = if builtins.typeOf label == "string" then label else "648c4ec2-8287-455e-8bc1-4b2de45b0b4e" ;
 		  in
 		    {
