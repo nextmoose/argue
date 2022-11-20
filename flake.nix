@@ -32,7 +32,7 @@
 			    else
 			      let
 			        eval = builtins.tryEval ( lambda ( builtins.elemAt 0 ) ) ;
-				success = builtins.trace "YES.." ( eval.success == builtins.elemAt test 1 ) ;
+				success = builtins.trace "Y ${ builtins.typeOf lambda }" ( eval.success == builtins.elemAt test 1 ) ;
 				value =
 				  if ! success then [ builtins.elemAt test 3 ]
 				  else if ! eval.success then [ builtins.elemAt test 3 ]
