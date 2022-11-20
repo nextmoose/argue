@@ -32,7 +32,10 @@
 			      let
 			        eval = builtins.tryEval ( lambda ( builtins.elemAt 0 ) ) ;
 				success = eval.success == builtins.elemAt test 1 ;
-				value = if success && eval.value == builtins.elemAt test 2 then [ ] else [ ( builtins.elemAt test 3 ) ] ;
+				value =
+				  if ! success then [ builtins.elemAt test 3 ]
+				  else if ! eval.success then [ builtins.elemAt test 3 ]
+				  else [ ] ;
 				in { success = success ; value = value ; } ;
 			in test input-tests mapper "2993696e-6e89-41b8-a61a-98ce44b944c4" ;
 		  output =
@@ -65,9 +68,9 @@
 		    results : mapper : error :
 		      if builtins.typeOf results != "list" then { success = false ; value = [ error ] ; }
 		      else
-		        let
-			  success = builtins.all ( test : test.success ) ( builtins.map mapper results ) ;
-			  value = builtins.concatLists ( builtins.map ( test : test.value ) ( builtins.map mapper results ) ) ;
+		        letb
+			  success = builtins.all ( test : test.success ) ( builtins.map mappe r results ) ;
+			  value = builtins.concatLists ( builtins.map ( test : test.value ) (( builtins.map mapper results ) ) ;
 			  in { success = success ; value = value ; } ;
 		  ticket = if builtins.typeOf label == "string" then label else "648c4ec2-8287-455e-8bc1-4b2de45b0b4e" ;
 		  in
