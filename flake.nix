@@ -68,7 +68,7 @@
 	          test =
 		    results : mapper : error :
 		      if builtins.trace "NO" false then builtins.throw ""
-		      if builtins.typeOf results != "list" then { success = false ; value = [ error ] ; }
+		      else if builtins.typeOf results != "list" then { success = false ; value = [ error ] ; }
 		      else
 		        let
 			  success = builtins.all ( test : test.success ) ( builtins.map mapper results ) ;
