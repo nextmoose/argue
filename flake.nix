@@ -76,7 +76,7 @@
 		  in
 		    {
 		      object = if output-test-results.success then output.value else builtins.throw ( concat-strings output-test-results.value ) ;
-		      test = if input-test-results.success then "PASSED" else builtins.concatStringsSep "," ( builtins.map builtins.typeOf input-test-results.value ) ;
+		      test = if input-test-results.success then "PASSED" else builtins.concatStringsSep "," ( builtins.map builtins.toString input-test-results.value ) ;
 		      trace =
 		        if string.success then builtins.trace string.value output.value
 			else if output-test-results.success then builtins.trace string.value output.value
