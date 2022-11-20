@@ -46,11 +46,12 @@
 			    if builtins.typeOf test != "list" then { success = false ; value = [ "cf9d7aa2-b282-43fa-aa1c-8e29e9ec4dc9" ] ; }
 			    else if builtins.length test != 2 then { success = false ; value = [ "862bd498-e4bf-4d93-9834-78abf60e88b5" ] ; }
 			    else if builtins.typeOf ( builtins.elemAt test 0 ) != "lambda" then { success = false ; value = [ "ac4c3793-77b8-4126-8c89-66e74795fcbc" ] ; }
-			    else if builtins.typeOf ( builtins.elemAt test 1 ) != "string" then { success = false ; value = [ "f708997b-d587-4346-8586-aac2fc6b6bc0" ] ; }
-			    else if builtins.typeOf ( builtins.getAttr "value" ( builtins.tryEval ( builtins.elemAt test 0 input ) ) ) != "bool" then { success = false ; value = [ "fe2209d1-b777-4385-8d16-38bf5bc2387a" ] ; }
-			    else if ! builtins.getAttr "success" ( builtins.tryEval ( builtins.elemAt test 0 input ) ) then { success = false ; value = [ "6b10b5e8-c6d2-4c15-8ad8-37f16da70efd" ] ; }
-			    else if ! builtins.getAttr "value" ( builtins.tryEval ( builtins.elemAt test 0 input ) ) then { success = false ; value = [ ( builtins.elemAt test 1 ) ] ; }
-			    else { success = true ; value = output.value ; } ;
+			    else if builtins.getAttr "success" ( builtins.tryEval ( builtins.elemAt test 0 input ) ) then { success = false ; value = [ "48f02c2d-c821-4e26-bbb6-d5fe81527445" ] ; }
+			    else if builtins.typeOf ( builtins.getAttr "value" ( builtins.tryEval ( builtins.elemAt test 0 input ) ) ) != "lambda" then { success = false ; value = [ "b4b634be-0345-4050-8f95-acbfede1af82" ] ; }
+			    else if builtins.getAttr "success" ( builtins.tryEval ( builtins.elemAt test 0 input output ) ) then { success = false ; value = [ "1f5465cf-b9fc-4444-9fb6-5e10ee0a1634" ] ; }
+			    else if builtins.typeOf ( builtins.getAttr "value" ( builtins.tryEval ( builtins.elemAt test 0 input output ) ) ) != "bool" then { success = false ; value = [ "b7664aeb-44af-493c-9c83-03e2620ae9fc" ] ; }
+			    else if ! builtins.getAttr "value" ( builtins.tryEval ( builtins.elemAt test 0 input output ) ) then { success = false ; value = [ ( builtins.elemAt test 1 ) ] ;
+			    else { success = true ; value = [ ] ; } ;
 			in test output-tests mapper "05e2eedd-cb28-4d01-b602-9d3d7665c0c6" ;
 		  string =
 		    if output-test-results.success == false then output-test-results
