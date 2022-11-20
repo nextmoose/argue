@@ -63,7 +63,7 @@
 		    else builtins.tryEval ( to-string output.value ) ;
 	          test =
 		    results : mapper : error :
-		      builtins.trace "YES" (
+		      builtins.trace ( builtins.concatStringsSep "," ( builtins.map builtins.typeOf [ results mapper error ] ) ) (
 		      if builtins.typeOf results != "list" then { success = false ; value = [ error ] ; }
 		      else
 		        let
