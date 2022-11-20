@@ -31,7 +31,7 @@
 			    else if builtins.typeOf ( builtins.elemAt test 3 ) != "string" then { success = false ; value = [ "1a5b6a81-bbe3-4c67-9911-c20dcc91ba76" ] ; }
 			    else
 			      let
-			        eval = builtins.tryEval ( lambda ( builtins.elemAt 0 ) ) ;
+			        eval = builtins.trace "YES" ( builtins.tryEval ( lambda ( builtins.elemAt 0 ) ) ) ;
 				success = eval.success == builtins.elemAt test 1 ;
 				value =
 				  if ! success then [ builtins.elemAt test 3 ]
@@ -67,15 +67,13 @@
 		    else builtins.tryEval ( to-string output.value ) ;
 	          test =
 		    results : mapper : error :
-		      if builtins.trace ( builtins.typeOf ( builtins.map mapper results ) ) false then builtins.throw ""
-		      else if builtins.typeOf results != "list" then { success = false ; value = [ error ] ; }
-		      else if builtins.trace "NO1" false then builtins.throw ""
+		      if builtins.typeOf results != "list" then { success = false ; value = [ error ] ; }
 		      else
 		        let
 			  mapped = builtins.map mapper results ;
 			  success = builtins.all ( test : test.success ) mapped ;
 			  value = builtins.concatLists ( builtins.map ( test : test.value ) mapped ) ;
-			  in builtins.trace ( "Y ${ builtins.typeOf ( builtins.getAttr "success" ( builtins.elemAt mapped 0 ) ) }" ) { success = success ; value = value ; } ;
+			  in { success = success ; value = value ; } ;
 		  ticket = if builtins.typeOf label == "string" then label else "648c4ec2-8287-455e-8bc1-4b2de45b0b4e" ;
 		  in
 		    {
