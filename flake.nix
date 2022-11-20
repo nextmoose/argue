@@ -36,7 +36,8 @@
 				  if ! success then [ builtins.elemAt test 3 ]
 				  else if ! eval.success then [ builtins.elemAt test 3 ]
 				  else [ ] ;
-				in { success = success ; value = value ; } ;
+				k = if eval.success then "Y" else "N" ;
+				in builtins.trace k { success = success ; value = value ; } ;
 			in test input-tests mapper "2993696e-6e89-41b8-a61a-98ce44b944c4" ;
 		  output =
 		    if ! input-test-results.success then input-test-results
