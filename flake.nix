@@ -44,25 +44,13 @@
 		        mapper =
 			  test :
 			    if builtins.typeOf test != "list" then { success = false ; value = [ "cf9d7aa2-b282-43fa-aa1c-8e29e9ec4dc9" ] ; }
-			    else if builtins.trace "NO1" false then builtins.throw ""
 			    else if builtins.length test != 2 then { success = false ; value = [ "862bd498-e4bf-4d93-9834-78abf60e88b5" ] ; }
-			    else if builtins.trace "NO2" false then builtins.throw ""
 			    else if builtins.typeOf ( builtins.elemAt test 0 ) != "lambda" then { success = false ; value = [ "ac4c3793-77b8-4126-8c89-66e74795fcbc" ] ; }
-			    else if builtins.trace "NO3 - ${ builtins.typeOf ( builtins.tryEval ( builtins.elemAt test 0 input ) ) }" false then builtins.throw ""
-			    else if builtins.trace "NO3 - ${ builtins.concatStringsSep "," ( builtins.attrNames ( builtins.tryEval ( builtins.elemAt test 0 input ) ) ) }" false then builtins.throw ""
-			    else if builtins.trace "NO3 - ${ builtins.concatStringsSep "," ( builtins.attrValues ( builtins.mapAttrs ( name : value : builtins.typeOf value ) ( builtins.tryEval ( builtins.elemAt test 0 input ) ) ) ) }" false then builtins.throw ""
-			    else if builtins.trace "NO3 - ${ builtins.concatStringsSep "," ( builtins.attrValues ( builtins.mapAttrs ( name : value : "${ name } is a ${ builtins.typeOf value }" ) ( builtins.tryEval ( builtins.elemAt test 0 input ) ) ) ) }" false then builtins.throw ""
-			    else if builtins.trace "NO3 - ${ builtins.concatStringsSep "," ( builtins.attrValues ( builtins.mapAttrs ( name : value : "${ name } is a ${ builtins.typeOf value }${ if builtins.typeOf value == "bool" then "(${ if value then "Y" else "N" })" else "" }" ) ( builtins.tryEval ( builtins.elemAt test 0 input ) ) ) ) }" false then builtins.throw ""
 			    else if ! builtins.getAttr "success" ( builtins.tryEval ( builtins.elemAt test 0 input ) ) then { success = false ; value = [ "48f02c2d-c821-4e26-bbb6-d5fe81527445" ] ; }
-			    else if builtins.trace "NO4" false then builtins.throw ""
 			    else if builtins.typeOf ( builtins.getAttr "value" ( builtins.tryEval ( builtins.elemAt test 0 input ) ) ) != "lambda" then { success = false ; value = [ "b4b634be-0345-4050-8f95-acbfede1af82" ] ; }
-			    else if builtins.trace "NO5" false then builtins.throw ""
 			    else if ! builtins.getAttr "success" ( builtins.tryEval ( builtins.elemAt test 0 input output.value ) ) then { success = false ; value = [ "1f5465cf-b9fc-4444-9fb6-5e10ee0a1634" ] ; }
-			    else if builtins.trace "NO6" false then builtins.throw ""
 			    else if builtins.typeOf ( builtins.getAttr "value" ( builtins.tryEval ( builtins.elemAt test 0 input output.value ) ) ) != "bool" then { success = false ; value = [ "b7664aeb-44af-493c-9c83-03e2620ae9fc" ] ; }
-			    else if builtins.trace "NO7" false then builtins.throw ""
 			    else if ! builtins.getAttr "value" ( builtins.tryEval ( builtins.elemAt test 0 input output.value ) ) then { success = false ; value = [ ( builtins.elemAt test 1 ) ] ; }
-			    else if builtins.trace "NO8" false then builtins.throw ""
 			    else { success = true ; value = [ ] ; } ;
 			in test output-tests mapper "05e2eedd-cb28-4d01-b602-9d3d7665c0c6" ;
 		  string =
