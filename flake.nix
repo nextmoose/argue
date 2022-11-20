@@ -74,7 +74,7 @@
 		  in
 		    {
 		      object = if output-test-results.success then output.value else builtins.throw ( concat-strings output-test-results.value ) ;
-		      test = if builtins.typeOf input-test-results == "set" then builtins.concatStringsSep "," ( builtins.attrValues ( builtins.mapAttrs ( name : value : "${ name } is a ${ builtins.typeOf name }" ) input-test-results ) ) else "FAILED" ;
+		      test = if builtins.typeOf input-test-results == "set" then builtins.concatStringsSep "," ( builtins.attrValues ( builtins.mapAttrs ( name : value : "${ name } is a ${ builtins.typeOf value }" ) input-test-results ) ) else "FAILED" ;
 		      trace =
 		        if string.success then builtins.trace string.value output.value
 			else if output-test-results.success then builtins.trace string.value output.value
