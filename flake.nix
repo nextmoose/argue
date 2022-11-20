@@ -67,6 +67,7 @@
 		    else builtins.tryEval ( to-string output.value ) ;
 	          test =
 		    results : mapper : error :
+		      if builtins.trace "NO" false then builtins.throw ""
 		      if builtins.typeOf results != "list" then { success = false ; value = [ error ] ; }
 		      else
 		        let
