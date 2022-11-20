@@ -36,8 +36,7 @@
 				  if ! success then [ builtins.elemAt test 3 ]
 				  else if ! eval.success then [ builtins.elemAt test 3 ]
 				  else [ ] ;
-				k = eval.success ;
-				in builtins.trace ( "${ if k then "Y" else "N" }" ) { success = success ; value = value ; } ;
+				in { success = success ; value = value ; } ;
 			in test input-tests mapper "2993696e-6e89-41b8-a61a-98ce44b944c4" ;
 		  output =
 		    if ! input-test-results.success then input-test-results
@@ -77,7 +76,7 @@
 		  in
 		    {
 		      object = if output-test-results.success then output.value else builtins.throw ( concat-strings output-test-results.value ) ;
-		      test = if input-test-results.success then "PASSED" else "FAILED" ;
+		      test = if builtins.typeOf input-test-results == "set" then "PASSED" else "FAILED" ;
 		      trace =
 		        if string.success then builtins.trace string.value output.value
 			else if output-test-results.success then builtins.trace string.value output.value
