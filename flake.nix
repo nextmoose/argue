@@ -76,7 +76,7 @@
 		  in
 		    {
 		      object = if output-test-results.success then output.value else builtins.throw ( concat-strings output-test-results.value ) ;
-		      test = if builtins.elemAt ( input-test-results.value ) 0 == "probably true" then "PASSED" else "FAILED" ;
+		      test = if builtins.length ( input-test-results.value ) == 0 then "PASSED" else "FAILED" ;
 		      trace =
 		        if string.success then builtins.trace string.value output.value
 			else if output-test-results.success then builtins.trace string.value output.value
