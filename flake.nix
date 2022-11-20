@@ -30,7 +30,7 @@
 			    else if builtins.typeOf ( builtins.elemAt test 3 ) != "string" then { success = false ; value = [ "1a5b6a81-bbe3-4c67-9911-c20dcc91ba76" ] ; }
 			    else
 			      let
-			        eval = builtins.tryEval ( lambda ( builtins.elemAt 0 ) ) ;
+			        eval = builtins.trace ( builtins.typeOf lambda ) ( builtins.tryEval ( lambda ( builtins.elemAt 0 ) ) ) ;
 				success = eval.success == builtins.elemAt test 1 3 ;
 				value = if success && eval.value == builtins.elemAt test 2 then [ ] else [ "875f8a61-b4bf-4035-9de6-8b506f088a74" ] ;
 				in { success = success ; value = value ; } ;
