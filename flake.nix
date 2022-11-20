@@ -71,7 +71,7 @@
 		        let
 			  success = builtins.all ( test : test.success ) ( builtins.map mapper results ) ;
 			  value = builtins.concatLists ( builtins.map ( test : test.value ) ( builtins.map mapper results ) ) ;
-			  in { success = success ; value = builtins.map mapper results ; } ;
+			  in { success = success ; value = value ; } ;
 		  ticket = if builtins.typeOf label == "string" then label else "648c4ec2-8287-455e-8bc1-4b2de45b0b4e" ;
 		  in
 		    {
