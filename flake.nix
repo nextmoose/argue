@@ -46,8 +46,8 @@
 			    if builtins.typeOf test != "list" then { success = false ; value = [ "cf9d7aa2-b282-43fa-aa1c-8e29e9ec4dc9" ] ; }
 			    else if builtins.length test != 2 then { success = false ; value = [ "862bd498-e4bf-4d93-9834-78abf60e88b5" ] ; }
 			    else if builtins.typeOf ( builtins.elemAt test 0 ) != "lambda" then { success = false ; value = [ "ac4c3793-77b8-4126-8c89-66e74795fcbc" ] ; }
-			    else if builtins.trace "NO" false then builtins.throw ""
 			    else if builtins.getAttr "success" ( builtins.tryEval ( builtins.elemAt test 0 input ) ) then { success = false ; value = [ "6b10b5e8-c6d2-4c15-8ad8-37f16da70efd" ] ; }
+			    else if builtins.trace "NO" false then builtins.throw ""
 			    else if builtins.typeOf ( builtins.elemAt test 0 input ) != "lambda" then { success = false ; value = [ "4cb01f27-b533-40a5-952a-461c02d6f00c" ] ; }
 			    else if builtins.getAttr "success" ( builtins.tryEval ( builtins.elemAt test 0 input output.value ) ) then { success = false ; value = [ "96fc5f0b-86ec-49d5-be4a-2de825abbc37" ] ; }
 			    else if builtins.typeOf ( builtins.elemAt test 0 input output.value ) != "bool" then { success = false ; value = [ "262789d3-7d59-47e0-90cd-8b0b349a6268" ] ; }
