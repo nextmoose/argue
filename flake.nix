@@ -40,7 +40,7 @@
 		    else builtins.tryEval lambda input ;
 		  output-test-results =
 		    if ! output.success then output
-		    else if builtins.typeOf output-tests != "list" then { success = false ; value = [ "84e71639-2a1b-433a-8629-30e7c6b212db" ]
+		    else if builtins.typeOf output-tests != "list" then { success = false ; value = [ "84e71639-2a1b-433a-8629-30e7c6b212db" ] }
 		    else
 		      let
 		        mapper =
