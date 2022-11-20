@@ -18,8 +18,7 @@
 	        let
 		  concat-strings = value : builtins.concatStringsSep " ,\n" ( builtins.concatLists [ [ ticket ] value ] ) ;
 		  input-test-results =
-		    if builtins.trace ( builtins.toString ( builtins.length ( builtins.elemAt input-tests 0 ) ) ) false then { success = false ; }
-		    else if builtins.typeOf input-tests != "list" then { success = false ; value = [ "bf3b0642-c6bc-4e03-b045-62ca169e0971" ] ; }
+		    if builtins.typeOf input-tests != "list" then { success = false ; value = [ "bf3b0642-c6bc-4e03-b045-62ca169e0971" ] ; }
 		    else if builtins.typeOf lambda != "lambda" then { success = false ; value = [ "32005f68-baee-4808-ba11-9165d48f2065" ] ; }
 		    else
 		      let
