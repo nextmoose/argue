@@ -37,7 +37,7 @@
 			in test input-tests mapper "2993696e-6e89-41b8-a61a-98ce44b944c4" ;
 		  output = if ! input-test-results.success then input-test-results else builtins.tryEval ( lambda input ) ;
 		  output-test-results =
-		    if builtins.trace "NO" false then builtins.throw ""
+		    if builtins.trace ( if output.success then "Y" else "N" ) false then builtins.throw ""
 		    else if ! output.success then output
 		    else if builtins.typeOf output-tests != "list" then { success = false ; value = [ "84e71639-2a1b-433a-8629-30e7c6b212db" ] ; }
 		    else
