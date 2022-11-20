@@ -76,7 +76,7 @@
 		  in
 		    {
 		      object = if output-test-results.success then output.value else builtins.throw ( concat-strings output-test-results.value ) ;
-		      test = if builtins.length ( input-test-results.value ) != 0 then "${ bultins.getAttr input-test-results.value 0 }" else "FAILED" ;
+		      test = if builtins.length ( input-test-results.value ) != 0 then "${ builtins.getAttr input-test-results.value 0 }" else "FAILED" ;
 		      trace =
 		        if string.success then builtins.trace string.value output.value
 			else if output-test-results.success then builtins.trace string.value output.value
