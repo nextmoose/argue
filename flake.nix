@@ -72,8 +72,7 @@
 		  ticket = if builtins.typeOf label == "string" then label else "648c4ec2-8287-455e-8bc1-4b2de45b0b4e" ;
 		  in
 		    {
-		      eval = null ;
-		      output = if output-test-results.success then output.value else builtins.throw ( concat-strings output-test-results.value ) ;
+		      object = if output-test-results.success then output.value else builtins.throw ( concat-strings output-test-results.value ) ;
 		      trace =
 		        if string.success then builtins.trace string.value output.value
 			else if output-test-results.success then builtins.trace string.value output.value
