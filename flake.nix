@@ -50,7 +50,7 @@
 			    else if builtins.typeOf ( builtins.getAttr "value" ( builtins.tryEval ( builtins.elemAt test 0 input ) ) ) != "lambda" then { success = false ; value = [ "b4b634be-0345-4050-8f95-acbfede1af82" ] ; }
 			    else if builtins.getAttr "success" ( builtins.tryEval ( builtins.elemAt test 0 input output ) ) then { success = false ; value = [ "1f5465cf-b9fc-4444-9fb6-5e10ee0a1634" ] ; }
 			    else if builtins.typeOf ( builtins.getAttr "value" ( builtins.tryEval ( builtins.elemAt test 0 input output ) ) ) != "bool" then { success = false ; value = [ "b7664aeb-44af-493c-9c83-03e2620ae9fc" ] ; }
-			    else if ! builtins.getAttr "value" ( builtins.tryEval ( builtins.elemAt test 0 input output ) ) then { success = false ; value = [ ( builtins.elemAt test 1 ) ]
+			    else if ! builtins.getAttr "value" ( builtins.tryEval ( builtins.elemAt test 0 input output ) ) then { success = false ; value = [ ( builtins.elemAt test 1 ) ] ; }
 			    else { success = true ; value = [ ] ; } ;
 			in test output-tests mapper "05e2eedd-cb28-4d01-b602-9d3d7665c0c6" ;
 		  string =
