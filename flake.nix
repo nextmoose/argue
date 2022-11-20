@@ -68,7 +68,7 @@
 		    results : mapper : error :
 		      if builtins.typeOf results != "list" then { success = false ; value = [ error ] ; }
 		      else
-		        letb
+		        let
 			  success = builtins.all ( test : test.success ) ( builtins.map mappe r results ) ;
 			  value = builtins.concatLists ( builtins.map ( test : test.value ) (( builtins.map mapper results ) ) ;
 			  in { success = success ; value = value ; } ;
