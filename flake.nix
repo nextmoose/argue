@@ -36,7 +36,7 @@
 				in { success = success ; value = value ; } ;
 			in test input-tests mapper "2993696e-6e89-41b8-a61a-98ce44b944c4" ;
 		  output =
-		    if ! input-test-results.success then input-tests-results
+		    if ! input-test-results.success then input-test-results
 		    else builtins.tryEval lambda input ;
 		  output-test-results =
 		    if ! output.success then output
