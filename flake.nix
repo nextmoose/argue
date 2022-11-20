@@ -77,7 +77,7 @@
 		      trace =
 		        if string.success then builtins.trace string.value output.value
 			else if output-test-results.success then builtins.trace string.value output.value
-			else builtins.throw ( concat-strings output-test-result.value ) ;
+			else builtins.throw ( concat-strings output-test-results.value ) ;
 		    } ;
             in { lib = argue ; }
       ) ;
