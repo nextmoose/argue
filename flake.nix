@@ -77,7 +77,7 @@
 		  in
 		    {
 		      object = if output-test-results.success then output.value else builtins.throw ( concat-strings output-test-results.value ) ;
-		      test = if builtins.toString ( builtins.length input-test-results.value ) == "0" then "PASSED" else "FAILED" ;
+		      test = if builtins.toString ( builtins.length input-test-results.value ) == "4" then "NOT PASSED" else "FAILED" ;
 		      trace =
 		        if string.success then builtins.trace string.value output.value
 			else if output-test-results.success then builtins.trace string.value output.value
