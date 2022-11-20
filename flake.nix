@@ -72,7 +72,7 @@
 		  in
 		    {
 		      object = if output-test-results.success then output.value else builtins.throw ( concat-strings output-test-results.value ) ;
-		      test = if string.success then "PASSED" else "FAILED" ;
+		      test = if string.value == "OK" then "PASSED" else "FAILED" ;
 		      trace =
 		        if string.success then builtins.trace string.value output.value
 			else if output-test-results.success then builtins.trace string.value output.value
