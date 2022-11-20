@@ -74,7 +74,10 @@
 		    {
 		      eval = null ;
 		      output = if output-tests-results.success then output.value else builtins.throw ( concat-strings output-tests-results.value ) ;
-		      trace = if  ;
+		      trace =
+		        if string.success then builtins.trace string.value output.value
+			else if output-tests-results.success then builtins.trace string.value output.value
+			else builtins.throw ( concat-strings output-tests-results.value )
 		    }
             in { lib = argue ; }
       ) ;
