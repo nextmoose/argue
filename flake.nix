@@ -73,7 +73,7 @@
 			  mapped = builtins.map mapper results ;
 			  success = builtins.all ( test : test.success ) mapped ;
 			  value = builtins.concatLists ( builtins.map ( test : test.value ) mapped ) ;
-			  k = builtins.toString ( builtins.length mapped ) ;
+			  k = builtins.toString ( builtins.length results ) ;
 			  in builtins.trace k { success = success ; value = value ; } ;
 		  ticket = if builtins.typeOf label == "string" then label else "648c4ec2-8287-455e-8bc1-4b2de45b0b4e" ;
 		  in
