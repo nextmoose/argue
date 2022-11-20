@@ -63,21 +63,22 @@
 		    else builtins.tryEval ( to-string output.value ) ;
 	          test =
 		    results : mapper : error :
+		      builtins.trace "YES" (
 		      if builtins.typeOf results != "list" then { success = false ; value = [ error ] ; }
 		      else
 		        let
 			  success = builtins.all ( test : test.success ) ( builtins.map mapper results ) ;
 			  value = builtins.concatLists ( builtins.map ( test : test.value ) ( builtins.map mapper results ) ) ;
-			  in { success = success ; value = value ; } ;
+			  in { success = success ; value = value ; } ) ;
 		  ticket = if builtins.typeOf label == "string" then label else "648c4ec2-8287-455e-8bc1-4b2de45b0b4e" ;
 		  in
 		    {
 		      object = if output-test-results.success then output.value else builtins.throw ( concat-strings output-test-results.value ) ;
+		      test = if builtins.typeOf input-test-results.success == "bool" then "PASSED" else "FAILED" ;
 		      trace =
 		        if string.success then builtins.trace string.value output.value
 			else if output-test-results.success then builtins.trace string.value output.value
 			else builtins.throw ( concat-strings output-test-results.value ) ;
-		      test = if builtins.typeOf input-test-results.success == "bool" then "PASSED" else "FAILED" ;
 		    } ;
             in { lib = argue ; }
       ) ;
