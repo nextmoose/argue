@@ -71,8 +71,9 @@
 		      else if builtins.typeOf results != "list" then { success = false ; value = [ error ] ; }
 		      else
 		        let
-			  success = builtins.all ( test : test.success ) ( builtins.map mapper results ) ;
-			  value = builtins.concatLists ( builtins.map ( test : test.value ) ( builtins.map mapper results ) ) ;
+			  mapped = builtins.map mapper results ;
+			  success = builtins.all ( test : test.success ) mapped ;
+			  value = builtins.concatLists ( builtins.map ( test : test.value ) mapped ) ;
 			  in builtins.trace ( if builtins.getAttr "success" ( builtins.elemAt ( builtins.map mapper results ) 3 ) then "NO" else "YES" ) { success = success ; value = value ; } ;
 		  ticket = if builtins.typeOf label == "string" then label else "648c4ec2-8287-455e-8bc1-4b2de45b0b4e" ;
 		  in
