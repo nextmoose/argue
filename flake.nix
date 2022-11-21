@@ -7,14 +7,7 @@
         system :
           let
             argue =
-	      {
-	        input ,
-	        input-tests ,
-		label ,
-		lambda ,
-		output-tests ,
-		to-string
-	      } :
+	      input-tests : output-tests : lambda : to-string : label : input :
 	        let
 		  concat-strings = value : builtins.concatStringsSep " ,\n" ( builtins.concatLists [ [ ticket ] value ] ) ;
 		  input-test-results =
